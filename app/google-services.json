@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "637949171681",
+    "firebase_url": "https://petsnarua-928c5.firebaseio.com",
+    "project_id": "petsnarua-928c5",
+    "storage_bucket": "petsnarua-928c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:637949171681:android:8757a618872716b2a2e4a0",
+        "android_client_info": {
+          "package_name": "com.vineivel.petsnarua"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "637949171681-ju328q44ds7otdl0gddjrgrldqs6rgo6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC3yjKP2sNC3Q09ylvLGvJU4GC497n6CY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "637949171681-ju328q44ds7otdl0gddjrgrldqs6rgo6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

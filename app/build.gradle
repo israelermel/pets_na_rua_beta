@@ -1,29 +1,60 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
-
     defaultConfig {
         applicationId "br.com.vineivel.petsnarua"
-        minSdkVersion 21
-        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
+
 dependencies {
+    implementation project(path: submodulesPlatform.domain)
+    implementation project(path: submodulesPlatform.data)
+//
+//    implementation project(path: submodulesLibraries.sharedFeatureArq)
+//    implementation project(path: submodulesLibraries.networking)
+//    implementation project(path: submodulesLibraries.analytics)
+//    implementation project(path: submodulesLibraries.appTheme)
+//    implementation project(path: submodulesLibraries.logger)
+
+//    implementation project(path: submodulesFeatures.navigation)
+//    implementation project(path: submodulesFeatures.login)
+//    implementation project(path: submodulesFeatures.onBoarding)
+//    implementation project(path: submodulesFeatures.quotationList)
+//    implementation project(path: submodulesFeatures.quotationRandom)
+//    implementation project(path: submodulesFeatures.quotationFiltering)
+
+
+    implementation globalDependencies.multidex
+
+    implementation globalDependencies.kotlinStdLib
+    implementation globalDependencies.coreKtx
+
+    implementation globalDependencies.koinAndroid
+    implementation globalDependencies.koinAndroidScope
+    implementation globalDependencies.koinAndroidViewModel
+
+    implementation globalDependencies.appCompat
+    implementation globalDependencies.constraintLayout
+
+    testImplementation globalTestDependencies.jUnit
+    testImplementation globalTestDependencies.testExt
+    testImplementation globalTestDependencies.mockitoCore
+    testImplementation globalTestDependencies.mockitoAndroid
+    testImplementation globalTestDependencies.mockitoInline
+    testImplementation globalTestDependencies.robolectric
+    implementation globalTestDependencies.koinTest
 }

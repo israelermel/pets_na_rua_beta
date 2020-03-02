@@ -1,15 +1,7 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin'
 
 dependencies {
-    implementation project(path: submodulesPlatform.domain)
-
     implementation globalDependencies.kotlinStdLib
-
-    implementation globalDependencies.koinAndroid
-    implementation globalDependencies.koinAndroidScope
-    implementation globalDependencies.koinAndroidViewModel
 
     implementation globalDependencies.firebaseAuth
 
@@ -19,7 +11,4 @@ dependencies {
     testImplementation globalTestDependencies.mockitoAndroid
     testImplementation globalTestDependencies.mockitoInline
     testImplementation globalTestDependencies.robolectric
-    implementation globalTestDependencies.koinTest
-
-    implementation globalDependencies.timber
 }
