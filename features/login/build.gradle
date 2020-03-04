@@ -3,15 +3,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 dependencies {
-    implementation project(path: submodulesPlatform.domain)
-
     implementation globalDependencies.kotlinStdLib
+    implementation globalDependencies.coreKtx
 
     implementation globalDependencies.koinAndroid
     implementation globalDependencies.koinAndroidScope
     implementation globalDependencies.koinAndroidViewModel
 
-    implementation globalDependencies.firebaseAuth
+    implementation globalDependencies.appCompat
+    implementation globalDependencies.constraintLayout
 
     testImplementation globalTestDependencies.jUnit
     testImplementation globalTestDependencies.testExt
@@ -19,9 +19,7 @@ dependencies {
     testImplementation globalTestDependencies.mockitoAndroid
     testImplementation globalTestDependencies.mockitoInline
     testImplementation globalTestDependencies.robolectric
-    implementation globalTestDependencies.koinTest
 
-    implementation globalDependencies.timber
-    implementation globalDependencies.rxJava
-    implementation globalDependencies.rxAndroid
+    implementation globalDependencies.firebaseAuth
+
 }

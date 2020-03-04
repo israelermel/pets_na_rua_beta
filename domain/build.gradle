@@ -11,4 +11,7 @@ dependencies {
     testImplementation globalTestDependencies.mockitoAndroid
     testImplementation globalTestDependencies.mockitoInline
     testImplementation globalTestDependencies.robolectric
+
+    implementation globalDependencies.rxJava
+    implementation globalDependencies.rxAndroid
 }

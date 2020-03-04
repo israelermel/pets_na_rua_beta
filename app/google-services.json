@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:637949171681:android:8757a618872716b2a2e4a0",
+        "mobilesdk_app_id": "1:637949171681:android:1446375ed5a2ad38a2e4a0",
         "android_client_info": {
-          "package_name": "com.vineivel.petsnarua"
+          "package_name": "br.com.vineivel.petsnarua"
         }
       },
       "oauth_client": [
