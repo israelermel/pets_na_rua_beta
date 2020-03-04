@@ -60,6 +60,4 @@ dependencies {
 
     implementation globalDependencies.firebaseAnalytics
 }
-
-
 apply plugin: 'com.google.gms.google-services'
