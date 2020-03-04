@@ -57,4 +57,9 @@ dependencies {
     testImplementation globalTestDependencies.mockitoInline
     testImplementation globalTestDependencies.robolectric
     implementation globalTestDependencies.koinTest
+
+    implementation globalDependencies.firebaseAnalytics
 }
+
+
+apply plugin: 'com.google.gms.google-services'
