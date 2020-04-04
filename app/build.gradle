@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+apply from: "$rootProject.rootDir/groups.gradle"
 
 android {
     defaultConfig {
@@ -21,43 +22,22 @@ android {
 
 
 dependencies {
-    implementation project(path: submodulesPlatform.domain)
-    implementation project(path: submodulesPlatform.data)
-//
-//    implementation project(path: submodulesLibraries.sharedFeatureArq)
-//    implementation project(path: submodulesLibraries.networking)
-//    implementation project(path: submodulesLibraries.analytics)
-//    implementation project(path: submodulesLibraries.appTheme)
-//    implementation project(path: submodulesLibraries.logger)
 
-//    implementation project(path: submodulesFeatures.navigation)
-//    implementation project(path: submodulesFeatures.login)
-//    implementation project(path: submodulesFeatures.onBoarding)
-//    implementation project(path: submodulesFeatures.quotationList)
-//    implementation project(path: submodulesFeatures.quotationRandom)
-//    implementation project(path: submodulesFeatures.quotationFiltering)
+    multiDex()
+    stdKotlin()
+    kotlinKtx()
+    di()
+    support()
+    testing()
+    firebaseAnalytics()
 
+    // Submodules Platform
+    dataModule()
+    domainModule()
 
-    implementation globalDependencies.multidex
-
-    implementation globalDependencies.kotlinStdLib
-    implementation globalDependencies.coreKtx
-
-    implementation globalDependencies.koinAndroid
-    implementation globalDependencies.koinAndroidScope
-    implementation globalDependencies.koinAndroidViewModel
-
-    implementation globalDependencies.appCompat
-    implementation globalDependencies.constraintLayout
-
-    testImplementation globalTestDependencies.jUnit
-    testImplementation globalTestDependencies.testExt
-    testImplementation globalTestDependencies.mockitoCore
-    testImplementation globalTestDependencies.mockitoAndroid
-    testImplementation globalTestDependencies.mockitoInline
-    testImplementation globalTestDependencies.robolectric
-    implementation globalTestDependencies.koinTest
-
-    implementation globalDependencies.firebaseAnalytics
+    // Submodules Features
+    featureLogin()
+    featureNavigation()
+    featureOnboarding()
 }
 apply plugin: 'com.google.gms.google-services'

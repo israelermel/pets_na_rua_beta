@@ -1,14 +1,9 @@
 apply plugin: 'kotlin'
+apply from: "$rootProject.rootDir/groups.gradle"
 
 dependencies {
-    implementation globalDependencies.kotlinStdLib
-
-    implementation globalDependencies.firebaseAuth
-
-    testImplementation globalTestDependencies.jUnit
-    testImplementation globalTestDependencies.testExt
-    testImplementation globalTestDependencies.mockitoCore
-    testImplementation globalTestDependencies.mockitoAndroid
-    testImplementation globalTestDependencies.mockitoInline
-    testImplementation globalTestDependencies.robolectric
+    stdKotlin()
+    firebaseAuth()
+    testing()
+    rxJava()
 }

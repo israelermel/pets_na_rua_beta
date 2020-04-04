@@ -5,11 +5,10 @@ apply from: "$rootProject.rootDir/groups.gradle"
 
 dependencies {
     stdKotlin()
+    kotlinKtx()
     di()
+    support()
     testing()
-    rxJava()
-    log()
-    firebaseAuth()
 
-    implementation project(path: submodulesPlatform.domain)
+    firebaseAuth()
 }
