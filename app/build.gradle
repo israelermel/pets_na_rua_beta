@@ -28,6 +28,7 @@ dependencies {
 
     // Submodules Features
     implementation project(path: submodulesFeatures.login)
+    implementation project(path: submodulesFeatures.feature_navigation)
 
     implementation globalDependencies.multidex
     implementation globalDependencies.kotlinStdLib

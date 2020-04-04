@@ -1,0 +1,23 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+dependencies {
+    implementation globalDependencies.kotlinStdLib
+    implementation globalDependencies.coreKtx
+
+    implementation globalDependencies.koinAndroid
+    implementation globalDependencies.koinAndroidScope
+    implementation globalDependencies.koinAndroidViewModel
+
+    implementation globalDependencies.appCompat
+    implementation globalDependencies.constraintLayout
+
+    testImplementation globalTestDependencies.jUnit
+    testImplementation globalTestDependencies.testExt
+    testImplementation globalTestDependencies.mockitoCore
+    testImplementation globalTestDependencies.mockitoAndroid
+    testImplementation globalTestDependencies.mockitoInline
+    testImplementation globalTestDependencies.robolectric
+
+}

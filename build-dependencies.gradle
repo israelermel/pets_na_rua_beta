@@ -97,6 +97,7 @@ ext {
     // SubModules Features
     //==============================================================================================
     submodulesFeatures = [
-        login : ':features:login'
+        login : ':features:login',
+        feature_navigation : ':features:feature-navigation'
     ]
 }
