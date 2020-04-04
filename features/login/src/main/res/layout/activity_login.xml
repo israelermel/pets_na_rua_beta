@@ -7,14 +7,14 @@
         <variable
             name="viewModel"
             type="br.com.vineivel.login.presentation.LoginViewModel" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".presentation.LoginActivity">
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
     </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.LoginActivity">
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
