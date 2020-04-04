@@ -3,7 +3,14 @@
     package="br.com.vineivel.login">
 
     <application>
-        <activity android:name=".presentation.LoginActivity"></activity>
+        <activity
+            android:name=".presentation.LoginActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="action.login.open" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
