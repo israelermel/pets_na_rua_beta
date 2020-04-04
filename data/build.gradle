@@ -1,27 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: "$rootProject.rootDir/groups.gradle"
 
 dependencies {
+    stdKotlin()
+    di()
+    testing()
+    rxJava()
+    log()
+    firebaseAuth()
+
     implementation project(path: submodulesPlatform.domain)
-
-    implementation globalDependencies.kotlinStdLib
-
-    implementation globalDependencies.koinAndroid
-    implementation globalDependencies.koinAndroidScope
-    implementation globalDependencies.koinAndroidViewModel
-
-    implementation globalDependencies.firebaseAuth
-
-    testImplementation globalTestDependencies.jUnit
-    testImplementation globalTestDependencies.testExt
-    testImplementation globalTestDependencies.mockitoCore
-    testImplementation globalTestDependencies.mockitoAndroid
-    testImplementation globalTestDependencies.mockitoInline
-    testImplementation globalTestDependencies.robolectric
-    implementation globalTestDependencies.koinTest
-
-    implementation globalDependencies.timber
-    implementation globalDependencies.rxJava
-    implementation globalDependencies.rxAndroid
 }

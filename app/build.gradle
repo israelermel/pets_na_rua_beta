@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+apply from: "$rootProject.rootDir/groups.gradle"
 
 android {
     defaultConfig {
@@ -22,32 +23,22 @@ android {
 
 dependencies {
 
+    multiDex()
+    stdKotlin()
+    kotlinKtx()
+    di()
+    support()
+    testing()
+    firebaseAnalytics()
+
     // Submodules Platform
-    implementation project(path: submodulesPlatform.domain)
-    implementation project(path: submodulesPlatform.data)
+    dataModule()
+    domainModule()
 
     // Submodules Features
-    implementation project(path: submodulesFeatures.login)
-    implementation project(path: submodulesFeatures.feature_navigation)
-
-    implementation globalDependencies.multidex
-    implementation globalDependencies.kotlinStdLib
-    implementation globalDependencies.coreKtx
-
-    implementation globalDependencies.koinAndroid
-
-    implementation globalDependencies.appCompat
-    implementation globalDependencies.constraintLayout
-
-    testImplementation globalTestDependencies.jUnit
-    testImplementation globalTestDependencies.testExt
-    testImplementation globalTestDependencies.mockitoCore
-    testImplementation globalTestDependencies.mockitoAndroid
-    testImplementation globalTestDependencies.mockitoInline
-    testImplementation globalTestDependencies.robolectric
-
-    implementation globalDependencies.firebaseAnalytics
-    implementation project(path: ':features:feature-onboarding')
+    featureLogin()
+    featureNavigation()
+    featureOnboarding()
 }
 
 

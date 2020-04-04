@@ -1,24 +1,15 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply from: "$rootProject.rootDir/groups.gradle"
 
 dependencies {
-    implementation globalDependencies.kotlinStdLib
-    implementation globalDependencies.coreKtx
+    stdKotlin()
+    kotlinKtx()
+    di()
+    support()
+    testing()
 
-    implementation globalDependencies.koinAndroid
-    implementation globalDependencies.koinAndroidScope
-    implementation globalDependencies.koinAndroidViewModel
-
-    implementation globalDependencies.appCompat
-    implementation globalDependencies.constraintLayout
-
-    testImplementation globalTestDependencies.jUnit
-    testImplementation globalTestDependencies.testExt
-    testImplementation globalTestDependencies.mockitoCore
-    testImplementation globalTestDependencies.mockitoAndroid
-    testImplementation globalTestDependencies.mockitoInline
-    testImplementation globalTestDependencies.robolectric
     implementation project(path: ':features:feature-navigation')
 
 }

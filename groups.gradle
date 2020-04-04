@@ -1,0 +1,81 @@
+def Group(Closure closure) {
+    closure.delegate = dependencies
+    return closure
+}
+
+
+ext {
+    support = Group {
+        implementation globalDependencies.appCompat
+        implementation globalDependencies.constraintLayout
+    }
+
+    stdKotlin = Group {
+        implementation globalDependencies.kotlinStdLib
+    }
+
+    kotlinKtx = Group {
+        implementation globalDependencies.coreKtx
+    }
+
+    testing = Group {
+        testImplementation globalTestDependencies.jUnit
+        testImplementation globalTestDependencies.testExt
+        testImplementation globalTestDependencies.mockitoCore
+        testImplementation globalTestDependencies.mockitoAndroid
+        testImplementation globalTestDependencies.mockitoInline
+        testImplementation globalTestDependencies.robolectric
+        implementation globalTestDependencies.koinTest
+    }
+
+
+    rxJava = Group {
+        implementation globalDependencies.rxJava
+        implementation globalDependencies.rxAndroid
+    }
+
+    di = Group {
+        implementation globalDependencies.koinAndroid
+        implementation globalDependencies.koinAndroidScope
+        implementation globalDependencies.koinAndroidViewModel
+    }
+
+    log = Group {
+        implementation globalDependencies.timber
+    }
+
+    multiDex = Group {
+        implementation globalDependencies.multidex
+    }
+
+    // Firebase Libs
+    firebaseAuth = Group {
+        implementation globalDependencies.firebaseAuth
+    }
+
+    firebaseAnalytics = Group {
+        implementation globalDependencies.firebaseAnalytics
+    }
+
+    // Submodules Platform
+    dataModule = Group {
+        implementation project(path: submodulesPlatform.data)
+    }
+
+    domainModule = Group {
+        implementation project(path: submodulesPlatform.domain)
+    }
+
+    // Submodules Features
+    featureLogin = Group {
+        implementation project(path: submodulesFeatures.login)
+    }
+
+    featureNavigation = Group {
+        implementation project(path: submodulesFeatures.feature_navigation)
+    }
+
+    featureOnboarding = Group {
+        implementation project(path: submodulesFeatures.feature_onboarding)
+    }
+}
