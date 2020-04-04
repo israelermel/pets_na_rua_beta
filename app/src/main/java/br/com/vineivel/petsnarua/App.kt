@@ -2,6 +2,7 @@ package br.com.vineivel.petsnarua
 
 import android.app.Application
 import br.com.vineivel.data.di.dataModule
+import br.com.vineivel.login.di.loginModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -19,7 +20,13 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 listOf(
-                    dataModule
+                    // Platform
+                    dataModule,
+
+                    // Libraries
+
+                    // Features
+                    loginModule
                 )
             )
         }

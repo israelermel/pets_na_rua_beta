@@ -47,6 +47,7 @@ dependencies {
     testImplementation globalTestDependencies.robolectric
 
     implementation globalDependencies.firebaseAnalytics
+    implementation project(path: ':features:feature-onboarding')
 }
 
 
