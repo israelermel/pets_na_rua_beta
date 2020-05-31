@@ -41,6 +41,7 @@ ext {
     ROBOLECTRIC = "4.2"
     TIMBER = "4.7.1"
     ARCH_COMP_TESTING = "2.10"
+    MOCKITO_INLINE_ITS_WORK = "2.1.0"
 
     submodulesPlatform = [
             domain: ':domain',
@@ -86,14 +87,13 @@ ext {
             //**** Tests ****//
             jUnit         : "junit:junit:$JUNIT",
             testExt       : "androidx.test.ext:junit:$TEST_EXT",
-            espressoCore  : "androidx.test.espresso:espresso-core:$ESPRESSO_CORE",
             mockitoCore   : "org.mockito:mockito-core:$MOCKITO",
             mockitoAndroid: "org.mockito:mockito-android:$MOCKITO_ANDROID",
             mockitoInline : "org.mockito:mockito-inline:$MOCKITO",
             robolectric   : "org.robolectric:robolectric:$ROBOLECTRIC",
             koinTest      : "org.koin:koin-test:$KOIN_VERSION",
             livedata_testing : "android.arch.core:core-testing:$ARCH_COMP_TESTING",
-
+            mockitoInlineItsWork : "com.nhaarman.mockitokotlin2:mockito-kotlin:$MOCKITO_INLINE_ITS_WORK",
     ]
 
     //==============================================================================================

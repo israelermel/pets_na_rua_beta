@@ -6,8 +6,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentCaptor
-import org.mockito.BDDMockito.*
+import org.mockito.BDDMockito.given
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.times
@@ -61,7 +60,7 @@ class LoginUseCaseTest {
         argumentCaptor<UserBo>().apply {
             Mockito.verify(repository, times(1)).loginRequest(capture())
             val userBoCapture = firstValue
-            Assert.assertEquals(userBoCapture.userName, "testes")
+            Assert.assertEquals(userBoCapture.userName, "teste")
             Assert.assertEquals(userBoCapture.password, "123")
         }
     }

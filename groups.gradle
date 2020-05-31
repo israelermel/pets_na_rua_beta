@@ -27,6 +27,7 @@ ext {
         testImplementation globalTestDependencies.robolectric
         implementation globalTestDependencies.koinTest
         androidTestImplementation globalTestDependencies.livedata_testing
+        testImplementation globalTestDependencies.mockitoInlineItsWork
     }
 
 
