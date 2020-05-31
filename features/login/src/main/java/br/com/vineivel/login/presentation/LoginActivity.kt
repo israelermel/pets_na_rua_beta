@@ -75,7 +75,6 @@ class LoginActivity : AppCompatActivity() {
                 Handler().postDelayed({
                     render(viewModel.searchAction(event.userBo))
                 }, 3000)
-
             }
         }
     }
@@ -84,7 +83,6 @@ class LoginActivity : AppCompatActivity() {
         when (state) {
             LoginUseCase.SearchViewState.LoadingState -> showLoadingState()
             LoginUseCase.SearchViewState.HideLoadingState -> hideLoadingState()
-            is LoginUseCase.SearchViewState.PullToRefreshState -> showLoadingState()
             is LoginUseCase.SearchViewState.DataState -> showDataState(state.userBo)
             is LoginUseCase.SearchViewState.ErrorState -> showErrorState(state.error)
         }

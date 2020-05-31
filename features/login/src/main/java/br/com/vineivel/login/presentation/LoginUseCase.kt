@@ -44,7 +44,6 @@ class LoginUseCase(
     sealed class SearchViewState {
         object LoadingState : SearchViewState()
         object HideLoadingState : SearchViewState()
-        object PullToRefreshState : SearchViewState()
         data class ErrorState(val error: String) : SearchViewState()
         data class DataState(val userBo: UserBo) : SearchViewState()
     }
