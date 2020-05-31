@@ -25,9 +25,10 @@ ext {
         androidTestImplementation globalTestDependencies.mockitoAndroid
         testImplementation globalTestDependencies.mockitoInline
         testImplementation globalTestDependencies.robolectric
-        implementation globalTestDependencies.koinTest
+        testImplementation globalTestDependencies.koinTest
         androidTestImplementation globalTestDependencies.livedata_testing
         testImplementation globalTestDependencies.mockitoInlineItsWork
+        androidTestImplementation globalTestDependencies.espresso
     }
 
 

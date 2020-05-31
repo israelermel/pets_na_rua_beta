@@ -34,13 +34,13 @@ ext {
     //  Versions - Tests
     //==============================================================================================
     JUNIT = "4.12"
-    TEST_EXT = "1.1.0"
+    TEST_EXT = "1.1.1"
     ESPRESSO_CORE = "3.1.1"
     MOCKITO = "3.3.3"
     MOCKITO_ANDROID = "2.24.5"
-    ROBOLECTRIC = "4.2"
+    ROBOLECTRIC = "4.3"
     TIMBER = "4.7.1"
-    ARCH_COMP_TESTING = "2.10"
+    ARCH_COMP_TESTING = "1.1.1"
     MOCKITO_INLINE_ITS_WORK = "2.1.0"
 
     submodulesPlatform = [
@@ -84,24 +84,24 @@ ext {
     // Compiles - Tests
     //==============================================================================================
     globalTestDependencies = [
-            //**** Tests ****//
-            jUnit         : "junit:junit:$JUNIT",
-            testExt       : "androidx.test.ext:junit:$TEST_EXT",
-            mockitoCore   : "org.mockito:mockito-core:$MOCKITO",
-            mockitoAndroid: "org.mockito:mockito-android:$MOCKITO_ANDROID",
-            mockitoInline : "org.mockito:mockito-inline:$MOCKITO",
-            robolectric   : "org.robolectric:robolectric:$ROBOLECTRIC",
-            koinTest      : "org.koin:koin-test:$KOIN_VERSION",
-            livedata_testing : "android.arch.core:core-testing:$ARCH_COMP_TESTING",
-            mockitoInlineItsWork : "com.nhaarman.mockitokotlin2:mockito-kotlin:$MOCKITO_INLINE_ITS_WORK",
+            jUnit               : "junit:junit:$JUNIT",
+            testExt             : "androidx.test.ext:junit:$TEST_EXT",
+            mockitoCore         : "org.mockito:mockito-core:$MOCKITO",
+            mockitoAndroid      : "org.mockito:mockito-android:$MOCKITO_ANDROID",
+            mockitoInline       : "org.mockito:mockito-inline:$MOCKITO",
+            robolectric         : "org.robolectric:robolectric:$ROBOLECTRIC",
+            koinTest            : "org.koin:koin-test:$KOIN_VERSION",
+            livedata_testing    : "android.arch.core:core-testing:$ARCH_COMP_TESTING",
+            mockitoInlineItsWork: "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0",
+            espresso            : 'androidx.test.espresso:espresso-core:3.2.0',
     ]
 
     //==============================================================================================
     // SubModules Features
     //==============================================================================================
     submodulesFeatures = [
-        login : ':features:login',
-        feature_navigation : ':features:feature-navigation',
-        feature_onboarding : ':features:feature-onboarding'
+            login             : ':features:login',
+            feature_navigation: ':features:feature-navigation',
+            feature_onboarding: ':features:feature-onboarding'
     ]
 }

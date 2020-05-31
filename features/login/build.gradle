@@ -12,7 +12,7 @@ dependencies {
 
     firebaseAuth()
 
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
-
-//    androidTestImplementation "org.mockito:mockito-inline:2.24.5"
+    androidTestImplementation('com.schibsted.spain:barista:3.5.0') {
+        exclude group: 'org.jetbrains.kotlin'
+    }
 }

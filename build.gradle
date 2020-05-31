@@ -28,13 +28,17 @@ subprojects {
             android {
                 buildToolsVersion buildTools
                 compileSdkVersion compileSdk
-                testOptions.unitTests.returnDefaultValues = true
-                testOptions.unitTests.includeAndroidResources = true
 
+                testOptions {
+                    unitTests {
+                        returnDefaultValues = true
+                        includeAndroidResources = true
+                    }
+                }
                 defaultConfig {
                     minSdkVersion minSdk
                     targetSdkVersion targetSdk
-                    testInstrumentationRunner testInstrumentationRunner
+                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                 }
 
                 compileOptions {
