@@ -11,4 +11,8 @@ dependencies {
     testing()
 
     firebaseAuth()
+
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+
+//    androidTestImplementation "org.mockito:mockito-inline:2.24.5"
 }

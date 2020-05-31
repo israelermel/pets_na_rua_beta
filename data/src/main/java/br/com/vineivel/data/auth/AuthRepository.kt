@@ -50,6 +50,7 @@ class AuthRepository(val firebaseAuth: FirebaseAuth) : AuthService {
                         emitter.onError(AuthException.UnknownAuthException)
                     }
                 }
+
             }
 
         } catch (e: Exception) {

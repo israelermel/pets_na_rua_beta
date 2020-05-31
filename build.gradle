@@ -29,6 +29,8 @@ subprojects {
             android {
                 buildToolsVersion buildTools
                 compileSdkVersion compileSdk
+                testOptions.unitTests.returnDefaultValues = true
+                testOptions.unitTests.includeAndroidResources = true
 
                 defaultConfig {
                     minSdkVersion minSdk
@@ -46,6 +48,7 @@ subprojects {
                 lintOptions {
                     abortOnError false
                 }
+
             }
         }
     }

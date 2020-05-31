@@ -22,10 +22,11 @@ ext {
         testImplementation globalTestDependencies.jUnit
         testImplementation globalTestDependencies.testExt
         testImplementation globalTestDependencies.mockitoCore
-        testImplementation globalTestDependencies.mockitoAndroid
+        androidTestImplementation globalTestDependencies.mockitoAndroid
         testImplementation globalTestDependencies.mockitoInline
         testImplementation globalTestDependencies.robolectric
         implementation globalTestDependencies.koinTest
+        androidTestImplementation globalTestDependencies.livedata_testing
     }
 
 
