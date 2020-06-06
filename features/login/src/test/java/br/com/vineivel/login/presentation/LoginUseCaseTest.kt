@@ -1,5 +1,6 @@
 package br.com.vineivel.login.presentation
 
+import com.nhaarman.mockitokotlin2.argumentCaptor
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -55,12 +56,12 @@ class LoginUseCaseTest {
         useCase.login(userBo)
 
         //*** Then ***//
-//        argumentCaptor<UserBo>().apply {
-//            Mockito.verify(repository, times(1)).loginRequest(capture())
-//            val userBoCapture = firstValue
-//            Assert.assertEquals(userBoCapture.userName, "teste")
-//            Assert.assertEquals(userBoCapture.password, "123")
-//        }
+        argumentCaptor<UserBo>().apply {
+            Mockito.verify(repository, Mockito.times(1)).loginRequest(capture())
+            val userBoCapture = firstValue
+            Assert.assertEquals(userBoCapture.userName, "teste")
+            Assert.assertEquals(userBoCapture.password, "123")
+        }
     }
 
     @Test

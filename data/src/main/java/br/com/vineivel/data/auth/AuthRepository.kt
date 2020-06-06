@@ -2,78 +2,59 @@ package br.com.vineivel.data.auth
 
 import br.com.vineivel.domain.errors.AuthException
 import br.com.vineivel.domain.model.AuthRequest
-import br.com.vineivel.domain.model.RegisterUser
+import br.com.vineivel.domain.model.RegisterLogin
 import br.com.vineivel.domain.model.User
 import br.com.vineivel.domain.services.AuthService
 import com.google.firebase.auth.*
-import io.reactivex.Single
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class AuthRepository(val firebaseAuth: FirebaseAuth) : AuthService {
 
-    override fun fetchLoggedUser(): Single<User?> {
-        return Single.create { emitter ->
-            firebaseAuth.currentUser?.let {
-                emitter.onSuccess(
-                    User(
-                        it.uid,
-                        it.displayName.orEmpty(),
-                        it.email
-                    )
-                )
-            } ?: emitter.onError(AuthException.UserNotFoundException)
-        }
+    override suspend fun fetchLoggedUser() = firebaseAuth.currentUser?.let {
+        User(
+            it.uid,
+            it.displayName.orEmpty(),
+            it.email
+        )
     }
 
-    override fun registerUser(registerUser: RegisterUser): Single<Boolean> {
+    override suspend fun registerUser(registerLogin: RegisterLogin) = withContext(Dispatchers.IO) {
         try {
-            return Single.create { emitter ->
-                firebaseAuth.createUserWithEmailAndPassword(
-                    registerUser.user.email!!,
-                    registerUser.password
-                ).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val user = firebaseAuth.currentUser
+            // Create user
+            firebaseAuth.createUserWithEmailAndPassword(
+                registerLogin.user.email!!, registerLogin.password
+            ).await()
 
-                        user?.apply {
-                            val profileChangeRequest = UserProfileChangeRequest
-                                .Builder()
-                                .setDisplayName(registerUser.user.name)
-                                .build()
+            // Get user
+            val currentUser = firebaseAuth.currentUser
 
-                            updateProfile(profileChangeRequest).addOnCompleteListener {
-                                emitter.onSuccess(true)
-                            }
-                        }
+            // Update informations
+            currentUser?.apply {
+                val profileChangeRequest = UserProfileChangeRequest
+                    .Builder()
+                    .setDisplayName(registerLogin.user.name)
+                    .build()
 
-                        emitter.onSuccess(false)
-                    } else {
-                        emitter.onError(AuthException.UnknownAuthException)
-                    }
-                }
-
+                updateProfile(profileChangeRequest).await()
             }
 
+            currentUser != null
         } catch (e: Exception) {
             when (e) {
                 is FirebaseAuthWeakPasswordException -> throw AuthException.PasswordUnderSixCharactersException
                 else -> throw AuthException.UnknownAuthException
             }
+
         }
     }
 
-    override fun login(user: AuthRequest): Single<Boolean> {
+    override suspend fun login(user: AuthRequest) = withContext(Dispatchers.IO) {
         try {
-            return Single.create { emitter ->
-                firebaseAuth.signInWithEmailAndPassword(user.email, user.password)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            emitter.onSuccess(task.result?.user != null)
-                        } else {
-                            emitter.onError(AuthException.UnknownAuthException)
-                        }
-                    }
-            }
-
+            val authResult =
+                firebaseAuth.signInWithEmailAndPassword(user.email, user.password).await()
+            authResult?.user != null
         } catch (e: Exception) {
             when (e) {
                 is IllegalArgumentException -> throw AuthException.EmptyFormValueException
@@ -84,5 +65,5 @@ class AuthRepository(val firebaseAuth: FirebaseAuth) : AuthService {
         }
     }
 
-    override fun logout() = firebaseAuth.signOut()
+    override suspend fun logout() = firebaseAuth.signOut()
 }

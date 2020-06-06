@@ -4,7 +4,7 @@ import br.com.vineivel.domain.errors.AuthException
 import br.com.vineivel.domain.validation.EmailValidator
 import br.com.vineivel.domain.validation.PasswordlValidator
 
-data class RegisterUser(
+data class RegisterLogin(
     val user: User,
     val password: String,
     val passwordConfirmation: String

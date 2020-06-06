@@ -7,6 +7,7 @@ ext {
     //  Versions - Firebase
     //==============================================================================================
     FIREBASE_AUTH = "19.1.0"
+    FIREBASE_AUTH_KTX = "19.3.1"
     FIREBASE_FIRESTORE = "21.2.1"
     FIREBASE_DATABASE = "19.2.0"
     FIREBASE_ANALYTICS = "17.2.1"
@@ -37,7 +38,7 @@ ext {
     TEST_EXT = "1.1.1"
     ESPRESSO_CORE = "3.1.1"
     MOCKITO = "3.3.3"
-    MOCKITO_ANDROID = "2.24.5"
+    MOCKITO_ANDROID = "2.25.0"
     ROBOLECTRIC = "4.3"
     TIMBER = "4.7.1"
     ARCH_COMP_TESTING = "1.1.1"
@@ -67,6 +68,10 @@ ext {
             firebaseDatabase    : "com.google.firebase:firebase-database:$FIREBASE_DATABASE",
             firebaseFirestore   : "com.google.firebase:firebase-firestore:$FIREBASE_FIRESTORE",
             firebaseAuth        : "com.google.firebase:firebase-auth:$FIREBASE_AUTH",
+
+            // Firebase Ktx
+            firebaseAuthKtx     : "com.google.firebase:firebase-auth-ktx:$FIREBASE_AUTH_KTX",
+
             //**** Koin ****//
             koinAndroid         : "org.koin:koin-android:$KOIN_VERSION",
             koinAndroidScope    : "org.koin:koin-android-scope:$KOIN_VERSION",

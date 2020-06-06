@@ -1,1 +1,11 @@
-<resources></resources>
+<resources>
+    <string name="auth_unknown_error">Não foi possível autenticar no momento!</string>
+    <string name="auth_invalid_password">A senha deve possuir ao menos 5 caracteres</string>
+    <string name="auth_user_not_found">Usuário não encontrado</string>
+    <string name="auth_email_bad_format">O formato do e-mail é invalido</string>
+    <string name="auth_wrong_credentials">Usuário ou senha inválida</string>
+    <string name="auth_form_empty">Você deve informar seu usuário e senha</string>
+    <string name="prompt_confirm_password">Confirm password</string>
+    <string name="auth_user_already_registered">O endereço de e-mail informado já está cadastrado</string>
+    <string name="auth_password_dont_match">As senhas informadas são diferentes</string>
+</resources>

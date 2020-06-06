@@ -1,4 +1,4 @@
-package br.com.vineivel.login
+package br.com.vineivel.registerlogin.email
 
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
@@ -6,26 +6,27 @@ import androidx.test.rule.ActivityTestRule
 import androidx.test.uiautomator.UiDevice
 import br.com.vineivel.login.di.loginModule
 import br.com.vineivel.login.presentation.RegisterLoginEmailActivity
+import br.com.vineivel.robot.base.given
+import br.com.vineivel.robot.base.then
+import br.com.vineivel.robot.base.whenever
+import br.com.vineivel.robot.registerlogin.email.registerLoginEmail
+import com.schibsted.spain.barista.interaction.BaristaSleepInteractions
 import com.schibsted.spain.barista.rule.BaristaRule
+import com.schibsted.spain.barista.rule.flaky.AllowFlaky
 import com.schibsted.spain.barista.rule.flaky.FlakyTestRule
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
-
-
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
+import java.util.concurrent.TimeUnit
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class ExampleInstrumentedTest {
+class RegisterLoginEmailAndroidTest {
 
     init {
         startKoin {}
@@ -48,6 +49,7 @@ class ExampleInstrumentedTest {
     @get:Rule
     var chain = RuleChain.outerRule(flakyRule).around(emailActivityRuleRegister)
 
+
     @Before
     fun setup() {
 
@@ -58,36 +60,28 @@ class ExampleInstrumentedTest {
         stopKoin()
     }
 
-//    @Test
-//    @AllowFlaky(attempts = 1)
-//    @Throws(Exception::class)
-//    fun teste() {
-//        unicred {
-//            given {
-//                writeTo(R.id.edt_user_name, "israelermel")
-//                writeTo(R.id.edt_password, "123")
-//            }
-//
-//            whenever {
-//                device.wait(
-//                    Until.findObject(By.res(device.launcherPackageName, "btn_login")),
-//                    6000
-//                )
-//
-//                clickOn(R.id.btn_login)
-//
-//            }
-//
-//            then {
-//                device.waitForWindowUpdate(
-//                    device.currentPackageName, 1200
-//                )
-//
-////                clickDialogNegativeButton()
-//                clickDialogPositiveButton()
-//            }
-//        }
-//    }
+    @Test
+    @Throws(Exception::class)
+    @AllowFlaky(attempts = 1)
+    fun teste() {
+        registerLoginEmail {
 
+            given {
+                fillFullName("teste")
+                fillEmaill("israelermel@asldfk.com")
+                fillPassword("1234")
+                fillPasswordConfirmation("1234")
+            }
+
+            whenever {
+                clickRegister()
+            }
+
+            then {
+                BaristaSleepInteractions.sleep(5, TimeUnit.SECONDS)
+            }
+
+        }
+    }
 
 }

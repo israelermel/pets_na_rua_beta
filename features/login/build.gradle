@@ -9,10 +9,17 @@ dependencies {
     di()
     support()
     testing()
+    coroutines()
 
-    firebaseAuth()
+//    firebaseAuth()
 
+    firebaseAuthKtx()
     androidTestImplementation('com.schibsted.spain:barista:3.5.0') {
         exclude group: 'org.jetbrains.kotlin'
     }
+
+    androidTestImplementation "org.koin:koin-test:2.0.1"
+
+
+    implementation project(path: submodulesPlatform.domain)
 }

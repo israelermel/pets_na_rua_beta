@@ -1,10 +1,10 @@
 package br.com.vineivel.petsnarua.di.modules
 
-import br.com.vineivel.domain.usecases.login.RegisterUserUseCase
+import br.com.vineivel.domain.usecases.register.RegisterLoginEmailUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {
 
     //Auth
-    factory { RegisterUserUseCase(get()) }
+    factory { RegisterLoginEmailUseCase(get()) }
 }
