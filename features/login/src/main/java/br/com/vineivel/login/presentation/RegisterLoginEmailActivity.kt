@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import br.com.vineivel.domain.LoadingState
 import br.com.vineivel.domain.model.RegisterLogin
 import br.com.vineivel.domain.model.User
-import br.com.vineivel.login.LoadingState
 import br.com.vineivel.login.R
 import br.com.vineivel.login.databinding.LoginBinding
 import br.com.vineivel.login.state.RegisterLoginUserEvent

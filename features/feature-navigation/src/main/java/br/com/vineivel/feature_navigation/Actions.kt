@@ -4,8 +4,11 @@ import android.content.Context
 import android.content.Intent
 
 object Actions {
-    fun openLoginIntent(context: Context) =
-        internalIntent(context, "action.login.open")
+    fun openEmailLoginIntent(context: Context) =
+        internalIntent(context, "action.emaillogin.open")
+
+    fun openGoogleLoginIntent(context: Context) =
+        internalIntent(context, "action.googlelogin.open")
 
     private fun internalIntent(context: Context, action: String) =
         Intent(action).setPackage(context.packageName)

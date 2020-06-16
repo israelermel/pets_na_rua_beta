@@ -34,6 +34,12 @@ ext {
         }
 
         androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+
+        androidTestImplementation('com.schibsted.spain:barista:3.5.0') {
+            exclude group: 'org.jetbrains.kotlin'
+        }
+
+        androidTestImplementation "org.koin:koin-test:2.0.1"
     }
 
 
@@ -69,6 +75,11 @@ ext {
     // https://firebaseopensource.com/projects/firebase/firebase-android-sdk/
     firebaseAuth = Group {
         implementation globalDependencies.firebaseAuth
+    }
+
+    firebaseGoogleSign = Group {
+        implementation 'com.google.firebase:firebase-auth:19.3.1'
+        implementation 'com.google.android.gms:play-services-auth:18.0.0'
     }
 
     firebaseAuthKtx = Group {

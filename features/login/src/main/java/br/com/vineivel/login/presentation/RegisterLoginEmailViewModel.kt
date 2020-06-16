@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.vineivel.domain.RequestResutl
+import br.com.vineivel.domain.RequestResult
 import br.com.vineivel.domain.errors.AuthException
 import br.com.vineivel.domain.model.RegisterLogin
 import br.com.vineivel.domain.usecases.register.RegisterLoginEmailUseCase
@@ -24,11 +24,11 @@ class RegisterLoginEmailViewModel(
         viewModelScope.launch {
 
             when (val authResult = emailUseCase.execute(registerLogin)) {
-                is RequestResutl.Success -> {
+                is RequestResult.Success -> {
                     _resultState.postValue(RegisterUserState.Authenticated)
                 }
 
-                is RequestResutl.Failure -> {
+                is RequestResult.Failure -> {
                     _resultState.postValue(
                         RegisterUserState.Error(
                             error = authResult.throwable as AuthException

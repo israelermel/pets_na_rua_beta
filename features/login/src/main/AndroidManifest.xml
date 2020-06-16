@@ -4,11 +4,22 @@
 
     <application>
         <activity
-            android:theme="@style/AppTheme"
-            android:name=".presentation.RegisterLoginEmailActivity"
-            android:screenOrientation="portrait">
+            android:name="br.com.vineivel.googleregister.presentation.GoogleRegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
             <intent-filter>
-                <action android:name="action.login.open" />
+                <action android:name="action.googlelogin.open" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.RegisterLoginEmailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="action.emaillogin.open" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

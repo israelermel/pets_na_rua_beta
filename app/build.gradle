@@ -39,6 +39,7 @@ dependencies {
     featureLogin()
     featureNavigation()
     featureOnboarding()
+    firebaseGoogleSign()
 
     androidTestImplementation('com.schibsted.spain:barista:3.5.0') {
         exclude group: 'org.jetbrains.kotlin'
@@ -49,5 +50,4 @@ dependencies {
 
 }
 
-
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
