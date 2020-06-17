@@ -9,6 +9,6 @@ class OnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        startActivity(Actions.openLoginIntent(baseContext))
+        startActivity(Actions.openFacebookIntent(baseContext))
     }
 }

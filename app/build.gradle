@@ -17,6 +17,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+//        debug {
+//            applicationIdSuffix ".debug"
+//            debuggable true
+//        }
+//
+//        staging {
+//            initWith debug
+//            applicationIdSuffix ".debugStaging"
+//        }
     }
 }
 
@@ -39,5 +49,14 @@ dependencies {
     featureLogin()
     featureNavigation()
     featureOnboarding()
+
+    androidTestImplementation('com.schibsted.spain:barista:3.5.0') {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+
+    androidTestImplementation "org.koin:koin-test:2.0.1"
+
+
 }
-apply plugin: 'com.google.gms.google-services'
+
+//apply plugin: 'com.google.gms.google-services'

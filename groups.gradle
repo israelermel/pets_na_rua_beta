@@ -22,10 +22,24 @@ ext {
         testImplementation globalTestDependencies.jUnit
         testImplementation globalTestDependencies.testExt
         testImplementation globalTestDependencies.mockitoCore
-        testImplementation globalTestDependencies.mockitoAndroid
+//        androidTestImplementation globalTestDependencies.mockitoAndroid
         testImplementation globalTestDependencies.mockitoInline
         testImplementation globalTestDependencies.robolectric
-        implementation globalTestDependencies.koinTest
+        testImplementation globalTestDependencies.koinTest
+//        androidTestImplementation globalTestDependencies.livedata_testing
+        testImplementation globalTestDependencies.mockitoInlineItsWork
+        androidTestImplementation globalTestDependencies.espresso
+        androidTestImplementation("org.koin:koin-test:2.0.1") {
+            exclude group: 'org.mockito'
+        }
+
+        androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+
+        androidTestImplementation('com.schibsted.spain:barista:3.5.0') {
+            exclude group: 'org.jetbrains.kotlin'
+        }
+
+        androidTestImplementation "org.koin:koin-test:2.0.1"
     }
 
 
@@ -48,13 +62,36 @@ ext {
         implementation globalDependencies.multidex
     }
 
+    coroutines = Group {
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.7"
+        testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7'
+        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.2.1"
+    }
+
     // Firebase Libs
+
+    // https://firebaseopensource.com/projects/firebase/firebase-android-sdk/
     firebaseAuth = Group {
         implementation globalDependencies.firebaseAuth
     }
 
+    firebaseGoogleSign = Group {
+        implementation 'com.google.firebase:firebase-auth:19.3.1'
+        implementation 'com.google.android.gms:play-services-auth:18.0.0'
+    }
+
+    firebaseAuthKtx = Group {
+        implementation globalDependencies.firebaseAuthKtx
+    }
+
     firebaseAnalytics = Group {
         implementation globalDependencies.firebaseAnalytics
+    }
+
+    facebookSdk = Group {
+        implementation 'com.facebook.android:facebook-login:[5,6)'
     }
 
     // Submodules Platform

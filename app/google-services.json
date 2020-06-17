@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "637949171681-ju328q44ds7otdl0gddjrgrldqs6rgo6.apps.googleusercontent.com",
+          "client_id": "637949171681-ffscprduct3i95sj8p3gf762uojl10pp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.vineivel.petsnarua",
+            "certificate_hash": "0bcfdc13723588e26b3a4c05fbf29dbefefcb6d1"
+          }
+        },
+        {
+          "client_id": "637949171681-4khcsbrrql9pqttjp40elck4lqs27uj1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -28,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "637949171681-ju328q44ds7otdl0gddjrgrldqs6rgo6.apps.googleusercontent.com",
+              "client_id": "637949171681-4khcsbrrql9pqttjp40elck4lqs27uj1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

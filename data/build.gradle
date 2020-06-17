@@ -9,7 +9,8 @@ dependencies {
     testing()
     rxJava()
     log()
-    firebaseAuth()
+    firebaseAuthKtx()
+    coroutines()
 
     implementation project(path: submodulesPlatform.domain)
 }
