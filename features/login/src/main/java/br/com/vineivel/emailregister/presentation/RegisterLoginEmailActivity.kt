@@ -1,4 +1,4 @@
-package br.com.vineivel.login.presentation
+package br.com.vineivel.emailregister.presentation
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -9,11 +9,11 @@ import androidx.lifecycle.Observer
 import br.com.vineivel.domain.LoadingState
 import br.com.vineivel.domain.model.RegisterLogin
 import br.com.vineivel.domain.model.User
-import br.com.vineivel.login.R
-import br.com.vineivel.login.databinding.LoginBinding
-import br.com.vineivel.login.state.RegisterLoginUserEvent
-import br.com.vineivel.login.state.RegisterUserState
-import br.com.vineivel.login.state.toStateResource
+import br.com.vineivel.emailregister.R
+import br.com.vineivel.emailregister.databinding.LoginBinding
+import br.com.vineivel.emailregister.state.RegisterLoginUserEvent
+import br.com.vineivel.emailregister.state.RegisterUserState
+import br.com.vineivel.emailregister.state.toStateResource
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 class RegisterLoginEmailActivity : AppCompatActivity() {

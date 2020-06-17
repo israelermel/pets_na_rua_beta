@@ -1,7 +1,7 @@
-package br.com.vineivel.login.state
+package br.com.vineivel.emailregister.state
 
 import br.com.vineivel.domain.errors.AuthException
-import br.com.vineivel.login.R
+import br.com.vineivel.emailregister.R
 
 data class RegisterUserErrorStateResources(val message: Int) {
     companion object {

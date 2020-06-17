@@ -1,4 +1,4 @@
-package br.com.vineivel.login.presentation
+package br.com.vineivel.emailregister.presentation
 
 import com.nhaarman.mockitokotlin2.argumentCaptor
 import org.junit.After

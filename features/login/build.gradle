@@ -15,8 +15,9 @@ dependencies {
 
     firebaseAuthKtx()
     firebaseGoogleSign()
+    facebookSdk()
 
     implementation project(path: submodulesPlatform.domain)
 
-    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-beta01"
+    implementation "androidx.navigation:navigation-ui-ktx:2.3.0-rc01"
 }

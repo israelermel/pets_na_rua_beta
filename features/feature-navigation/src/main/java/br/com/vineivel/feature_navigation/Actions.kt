@@ -10,6 +10,10 @@ object Actions {
     fun openGoogleLoginIntent(context: Context) =
         internalIntent(context, "action.googlelogin.open")
 
+    fun openFacebookIntent(context: Context) =
+        internalIntent(context, "action.facebooklogin.open")
+
+
     private fun internalIntent(context: Context, action: String) =
         Intent(action).setPackage(context.packageName)
 

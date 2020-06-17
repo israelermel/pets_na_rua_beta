@@ -1,11 +1,11 @@
-package br.com.vineivel.login
+package br.com.vineivel.emailregister
 
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import androidx.test.uiautomator.UiDevice
-import br.com.vineivel.login.di.loginModule
-import br.com.vineivel.login.presentation.RegisterLoginEmailActivity
+import br.com.vineivel.emailregister.di.loginModule
+import br.com.vineivel.emailregister.presentation.RegisterLoginEmailActivity
 import com.schibsted.spain.barista.rule.BaristaRule
 import com.schibsted.spain.barista.rule.flaky.FlakyTestRule
 import org.junit.After

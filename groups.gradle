@@ -90,6 +90,10 @@ ext {
         implementation globalDependencies.firebaseAnalytics
     }
 
+    facebookSdk = Group {
+        implementation 'com.facebook.android:facebook-login:[5,6)'
+    }
+
     // Submodules Platform
     dataModule = Group {
         implementation project(path: submodulesPlatform.data)

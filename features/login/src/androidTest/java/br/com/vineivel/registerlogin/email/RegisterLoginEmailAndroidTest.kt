@@ -2,8 +2,8 @@ package br.com.vineivel.registerlogin.email
 
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
-import br.com.vineivel.login.di.loginModule
-import br.com.vineivel.login.presentation.RegisterLoginEmailActivity
+import br.com.vineivel.emailregister.di.loginModule
+import br.com.vineivel.emailregister.presentation.RegisterLoginEmailActivity
 import com.schibsted.spain.barista.rule.BaristaRule
 import org.junit.Assert
 import org.junit.Before

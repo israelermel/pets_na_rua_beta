@@ -1,6 +1,6 @@
 package br.com.vineivel.robot.registerlogin.email
 
-import br.com.vineivel.login.R
+import br.com.vineivel.emailregister.R
 import br.com.vineivel.robot.base.BaseTestRobot
 
 fun registerLoginEmail(func: RegisterLoginEmailRobot.() -> Unit) = RegisterLoginEmailRobot()

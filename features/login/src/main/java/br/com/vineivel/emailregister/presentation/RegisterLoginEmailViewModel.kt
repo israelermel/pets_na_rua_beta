@@ -1,4 +1,4 @@
-package br.com.vineivel.login.presentation
+package br.com.vineivel.emailregister.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import br.com.vineivel.domain.RequestResult
 import br.com.vineivel.domain.errors.AuthException
 import br.com.vineivel.domain.model.RegisterLogin
 import br.com.vineivel.domain.usecases.register.RegisterLoginEmailUseCase
-import br.com.vineivel.login.state.RegisterUserState
+import br.com.vineivel.emailregister.state.RegisterUserState
 import kotlinx.coroutines.launch
 
 class RegisterLoginEmailViewModel(

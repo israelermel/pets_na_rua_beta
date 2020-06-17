@@ -17,6 +17,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+//        debug {
+//            applicationIdSuffix ".debug"
+//            debuggable true
+//        }
+//
+//        staging {
+//            initWith debug
+//            applicationIdSuffix ".debugStaging"
+//        }
     }
 }
 
@@ -39,7 +49,6 @@ dependencies {
     featureLogin()
     featureNavigation()
     featureOnboarding()
-    firebaseGoogleSign()
 
     androidTestImplementation('com.schibsted.spain:barista:3.5.0') {
         exclude group: 'org.jetbrains.kotlin'

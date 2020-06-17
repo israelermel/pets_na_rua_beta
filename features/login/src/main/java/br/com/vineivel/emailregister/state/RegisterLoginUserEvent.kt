@@ -1,4 +1,4 @@
-package br.com.vineivel.login.state
+package br.com.vineivel.emailregister.state
 
 import br.com.vineivel.domain.model.RegisterLogin
 
