@@ -8,6 +8,7 @@ ext {
     support = Group {
         implementation globalDependencies.appCompat
         implementation globalDependencies.constraintLayout
+        implementation globalDependencies.material
     }
 
     stdKotlin = Group {
@@ -16,6 +17,11 @@ ext {
 
     kotlinKtx = Group {
         implementation globalDependencies.coreKtx
+    }
+
+    activityCommons = Group {
+        implementation 'androidx.activity:activity-ktx:1.2.0-alpha06'
+        implementation 'androidx.fragment:fragment-ktx:1.3.0-alpha06'
     }
 
     testing = Group {

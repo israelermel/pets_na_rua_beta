@@ -3,6 +3,7 @@ package br.com.vineivel.petsnarua
 import android.app.Application
 import br.com.vineivel.data.di.dataModule
 import br.com.vineivel.emailregister.di.loginModule
+import br.com.vineivel.googleregister.di.googleRegisterModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -26,7 +27,8 @@ class App : Application() {
                     // Libraries
 
                     // Features
-                    loginModule
+                    loginModule,
+                    googleRegisterModule
                 )
             )
         }

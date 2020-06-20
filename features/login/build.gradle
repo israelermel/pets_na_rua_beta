@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from: "$rootProject.rootDir/groups.gradle"
+apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -12,6 +13,8 @@ dependencies {
     support()
     testing()
     coroutines()
+    featureNavigation()
+    activityCommons()
 
     firebaseAuthKtx()
     firebaseGoogleSign()

@@ -7,8 +7,14 @@ data class RegisterUserErrorStateResources(val message: Int) {
     companion object {
         operator fun invoke(error: AuthException) =
             when (error) {
-                is AuthException.EmptyFormValueException -> RegisterUserErrorStateResources(
-                    R.string.auth_form_empty
+                is AuthException.EmptyFullnameException -> RegisterUserErrorStateResources(
+                    R.string.form_fullname_empty
+                )
+                is AuthException.EmptyEmailException -> RegisterUserErrorStateResources(
+                    R.string.form_email_empty
+                )
+                is AuthException.EmptyPasswordException -> RegisterUserErrorStateResources(
+                    R.string.form_password_empty
                 )
                 is AuthException.UserNotFoundException -> RegisterUserErrorStateResources(
                     R.string.auth_user_not_found

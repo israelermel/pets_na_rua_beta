@@ -11,5 +11,6 @@ dependencies {
     testing()
 
     implementation project(path: ':features:feature-navigation')
+    implementation project(path: ':features:login')
 
 }
