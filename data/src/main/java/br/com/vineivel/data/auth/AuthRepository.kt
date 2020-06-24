@@ -44,6 +44,7 @@ class AuthRepository(val firebaseAuth: FirebaseAuth) : AuthService {
         } catch (e: Exception) {
             when (e) {
                 is FirebaseAuthWeakPasswordException -> throw AuthException.PasswordUnderSixCharactersException
+                is FirebaseAuthUserCollisionException -> throw AuthException.AlreadyRegisteredUserException
                 else -> throw AuthException.UnknownAuthException
             }
 
@@ -57,7 +58,7 @@ class AuthRepository(val firebaseAuth: FirebaseAuth) : AuthService {
             authResult?.user != null
         } catch (e: Exception) {
             when (e) {
-                is IllegalArgumentException -> throw AuthException.EmptyFormValueException
+                is IllegalArgumentException -> throw AuthException.EmptyFullnameException
                 is FirebaseAuthInvalidCredentialsException -> throw AuthException.InvalidEmailFormatException
                 is FirebaseAuthInvalidUserException -> throw AuthException.UserNotFoundException
                 else -> throw AuthException.UnknownAuthException

@@ -6,12 +6,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import br.com.vineivel.domain.LoadingState
-import br.com.vineivel.domain.model.RegisterLogin
-import br.com.vineivel.domain.model.User
+import br.com.vineivel.domain.errors.AuthException
 import br.com.vineivel.emailregister.R
 import br.com.vineivel.emailregister.databinding.LoginBinding
-import br.com.vineivel.emailregister.state.RegisterLoginUserEvent
 import br.com.vineivel.emailregister.state.RegisterUserState
 import br.com.vineivel.emailregister.state.toStateResource
 import org.koin.android.viewmodel.ext.android.getViewModel
@@ -19,63 +16,28 @@ import org.koin.android.viewmodel.ext.android.getViewModel
 class RegisterLoginEmailActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginBinding
-    private lateinit var emailViewModelRegister: RegisterLoginEmailViewModel
+    private lateinit var viewModel: RegisterLoginEmailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.lifecycleOwner = this
-        emailViewModelRegister = getViewModel()
-        binding.viewModel = emailViewModelRegister
+        viewModel = getViewModel()
+        binding.viewModel = viewModel
 
         configFields()
         attachObservers()
     }
 
-    private fun configFields() {
-        with(binding) {
-            btnRegisterLoginEmail.setOnClickListener {
-                val registerUser = createRegisterUser()
-
-                actionOnEvent(
-                    RegisterLoginUserEvent.RegisterLoginWithNameAndEmail(registerUser)
-                )
-            }
-        }
-    }
-
-    private fun LoginBinding.createRegisterUser(): RegisterLogin {
-        val password = edtUserRegisterPassword.text.toString()
-        val confirmPassword = edtUserRegisterConfirmPassword.text.toString()
-        val userName = edtUserRegisterFullName.text.toString()
-        val email = edtUserRegisterEmail.text.toString()
-
-        return RegisterLogin(
-            User(name = userName, email = email),
-            password = password,
-            passwordConfirmation = confirmPassword
-        )
-    }
-
-    private fun actionOnEvent(eventRegisterLogin: RegisterLoginUserEvent) {
-        when (eventRegisterLogin) {
-            is RegisterLoginUserEvent.RegisterLoginWithNameAndEmail -> {
-                renderLoading(LoadingState.Loading)
-                emailViewModelRegister.registerLoginWithUsernameAndEmail(eventRegisterLogin.registerLogin)
-            }
-        }
-    }
+    private fun configFields() {}
 
     private fun attachObservers() {
-        with(emailViewModelRegister) {
+        with(viewModel) {
 
             resultState.observe(this@RegisterLoginEmailActivity, Observer { response ->
                 when (response) {
-                    is RegisterUserState.Loading -> showLoadingState()
                     is RegisterUserState.Authenticated -> {
-                        renderLoading(LoadingState.UnLoad)
-
                         Toast.makeText(
                             this@RegisterLoginEmailActivity, "Salvo com sucesso",
                             Toast.LENGTH_SHORT
@@ -83,8 +45,7 @@ class RegisterLoginEmailActivity : AppCompatActivity() {
                     }
 
                     is RegisterUserState.Error -> {
-                        renderLoading(LoadingState.UnLoad)
-                        showErrorState(response.toStateResource().message)
+                        showErrorMessage(response)
                     }
 
                 }
@@ -92,18 +53,33 @@ class RegisterLoginEmailActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoadingState() {
-        binding.loginProgressBar.show()
-    }
+    private fun RegisterLoginEmailViewModel.showErrorMessage(
+        response: RegisterUserState.Error
+    ) {
+        val errorMessage = getString(response.toStateResource().message)
 
-    private fun hideLoadingState() {
-        binding.loginProgressBar.hide()
-    }
-
-    fun renderLoading(loadingState: LoadingState) {
-        when (loadingState) {
-            is LoadingState.Loading -> showLoadingState()
-            is LoadingState.UnLoad -> hideLoadingState()
+        when (response.error) {
+            is AuthException.EmptyFullnameException -> {
+                updateErrorMessageFullname(errorMessage)
+            }
+            is AuthException.EmptyEmailException -> {
+                updateErrorMessageEmail(errorMessage)
+            }
+            is AuthException.InvalidEmailFormatException -> {
+                updateErrorMessageEmail(errorMessage)
+            }
+            is AuthException.EmptyPasswordException -> {
+                updateErrorMessagePassword(errorMessage)
+            }
+            is AuthException.PasswordUnderSixCharactersException -> {
+                updateErrorMessagePassword(errorMessage)
+            }
+            is AuthException.PasswordsDoNotMatchException -> {
+                updateErrorMessagePassword(errorMessage)
+            }
+            is AuthException.AlreadyRegisteredUserException -> {
+                showErrorState(R.string.auth_error_user_already_exists)
+            }
         }
     }
 
