@@ -56,6 +56,17 @@ dependencies {
 
     androidTestImplementation "org.koin:koin-test:2.0.1"
 
+    dependencies {
+        def appCenterSdkVersion = '3.2.2'
+        implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+        implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+    }
+    dependencies {
+        def appCenterSdkVersion = '3.2.2'
+        implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
+        implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+        implementation "com.microsoft.appcenter:appcenter-distribute:${appCenterSdkVersion}"
+    }
 
 }
 
