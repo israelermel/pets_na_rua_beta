@@ -37,19 +37,10 @@ class GoogleRegisterViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _signState.postValue(true)
-//                    setResultGoogle()
                 } else {
                     _signState.postValue(false)
-//                    Toast.makeText(
-//                        this@GoogleRegisterActivity,
-//                        "Error${task.exception?.message.orEmpty()}",
-//                        Toast.LENGTH_LONG
-//                    ).show()
                 }
             }
     }
 
-    fun onGoogleRegisterClick() {
-
-    }
 }

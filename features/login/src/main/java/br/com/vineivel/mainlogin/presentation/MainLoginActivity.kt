@@ -8,7 +8,6 @@ import br.com.vineivel.emailregister.R
 import br.com.vineivel.emailregister.presentation.RegisterLoginEmailActivity
 import br.com.vineivel.facebookregister.contract.FacebookRegisterContract
 import br.com.vineivel.googleregister.contract.GoogleRegisterContract
-import com.facebook.AccessToken
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main_login.*
@@ -33,11 +32,6 @@ class MainLoginActivity : AppCompatActivity() {
     }
 
     private fun logout() {
-
-
-        val accessToken = AccessToken.getCurrentAccessToken()
-        val isLoggedIn = accessToken != null && !accessToken.isExpired
-
         Firebase.auth.currentUser?.let {
             Firebase.auth.signOut()
         }
