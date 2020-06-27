@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class AuthRepository(val firebaseAuth: FirebaseAuth) : AuthService {
+class AuthEmailRepository(val firebaseAuth: FirebaseAuth) : AuthService {
 
     override suspend fun fetchLoggedUser() = firebaseAuth.currentUser?.let {
         User(

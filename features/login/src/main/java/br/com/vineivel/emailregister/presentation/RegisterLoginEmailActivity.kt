@@ -78,17 +78,17 @@ class RegisterLoginEmailActivity : AppCompatActivity() {
                 updateErrorMessagePassword(errorMessage)
             }
             is AuthException.AlreadyRegisteredUserException -> {
-                showErrorState(R.string.auth_error_user_already_exists)
+                showErrorState(errorMessage)
             }
         }
     }
 
-    private fun showErrorState(msg: Int) {
+    private fun showErrorState(msg: String) {
         AlertDialog.Builder(this)
             .setTitle("Error")
             .setMessage(msg)
             .setCancelable(true)
-            .setPositiveButton("Ok") { dialog, which ->
+            .setPositiveButton("Ok") { dialog, _ ->
                 dialog.cancel()
             }
             .show()

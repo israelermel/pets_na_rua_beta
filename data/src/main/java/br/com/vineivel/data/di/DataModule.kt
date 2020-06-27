@@ -1,6 +1,6 @@
 package br.com.vineivel.data.di
 
-import br.com.vineivel.data.auth.AuthRepository
+import br.com.vineivel.data.auth.AuthEmailRepository
 import br.com.vineivel.domain.services.AuthService
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -10,7 +10,7 @@ val dataModule = module {
     // Auth
     single { Firebase.auth }
     single<AuthService> {
-        AuthRepository(
+        AuthEmailRepository(
             firebaseAuth = get()
         )
     }
