@@ -19,7 +19,7 @@ private fun renderLoading(
 ) {
     when (loadingState) {
         is LoadingState.Loading -> view.toLoading()
-        is LoadingState.UnLoad -> view.toUnload()
+        is LoadingState.Loaded -> view.toUnload()
     }
 }
 

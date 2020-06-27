@@ -7,10 +7,10 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import br.com.vineivel.domain.model.User
 import br.com.vineivel.emailregister.databinding.GoogleRegisterBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseUser
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 class GoogleRegisterActivity : AppCompatActivity() {
@@ -56,7 +56,7 @@ class GoogleRegisterActivity : AppCompatActivity() {
 
         viewModel.signState.observe(this, Observer {
             if (it) {
-                setResultGoogle(viewModel.userLogged)
+                setResultGoogle(viewModel.getUser())
             }
         })
 
@@ -64,7 +64,7 @@ class GoogleRegisterActivity : AppCompatActivity() {
 
     }
 
-    private fun setResultGoogle(userLogged: FirebaseUser?) {
+    private fun setResultGoogle(userLogged: User) {
         val intent = Intent()
         intent.putExtra("data", userLogged)
         setResult(Activity.RESULT_OK, intent)

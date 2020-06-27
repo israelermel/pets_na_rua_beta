@@ -59,7 +59,7 @@ class RegisterLoginEmailViewModel(
     }
 
     init {
-        loadingStateToUnload()
+        loadingStateToLoaded()
     }
 
     // User Events
@@ -70,11 +70,11 @@ class RegisterLoginEmailViewModel(
             when (val authResult = emailUseCase.execute(registerLogin)) {
                 is RequestResult.Success -> {
                     authenticatedResultState()
-                    loadingStateToUnload()
+                    loadingStateToLoaded()
                 }
 
                 is RequestResult.Failure -> {
-                    loadingStateToUnload()
+                    loadingStateToLoaded()
                     errorResultState(authResult.throwable as AuthException)
                 }
             }
@@ -140,8 +140,8 @@ class RegisterLoginEmailViewModel(
         _loadingState.postValue(LoadingState.Loading)
     }
 
-    private fun loadingStateToUnload() {
-        _loadingState.postValue(LoadingState.UnLoad)
+    private fun loadingStateToLoaded() {
+        _loadingState.postValue(LoadingState.Loaded)
     }
 
 }

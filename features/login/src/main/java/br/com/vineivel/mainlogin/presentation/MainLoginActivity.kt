@@ -53,7 +53,7 @@ class MainLoginActivity : AppCompatActivity() {
             if (result == null) {
                 Toast.makeText(this, "teste error", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "${result.providerData[0].displayName}", Toast.LENGTH_LONG)
+                Toast.makeText(this, "${result.profilePicture}", Toast.LENGTH_LONG)
                     .show()
             }
         }

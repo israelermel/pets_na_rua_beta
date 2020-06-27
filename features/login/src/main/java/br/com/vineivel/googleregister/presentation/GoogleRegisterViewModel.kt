@@ -3,6 +3,7 @@ package br.com.vineivel.googleregister.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.vineivel.domain.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.GoogleAuthProvider
@@ -22,7 +23,24 @@ class GoogleRegisterViewModel : ViewModel() {
         Firebase.auth
     }
 
-    val userLogged by lazy {
+    fun getUser(): User {
+        userLoggedFirebase?.let { firebaseUser ->
+            val userInfo = firebaseUser.providerData[0]
+            val providerId = firebaseUser.providerData[1].providerId
+            with(userInfo) {
+                return User(
+                    uid,
+                    displayName.orEmpty(),
+                    email.orEmpty(),
+                    photoUrl.toString(),
+                    providerId
+                )
+            }
+        }
+        return User()
+    }
+
+    val userLoggedFirebase by lazy {
         auth.currentUser
     }
 
