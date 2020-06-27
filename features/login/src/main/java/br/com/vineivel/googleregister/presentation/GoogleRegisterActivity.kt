@@ -32,23 +32,9 @@ class GoogleRegisterActivity : AppCompatActivity() {
         getViewModel()
     }
 
-    private val startForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-//                GoogleSignIn.getLastSignedInAccount(this@GoogleRegisterActivity) // obter ultimo usuario logado
-                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-
-                try {
-                    val account = task.getResult(ApiException::class.java)!!
-                    viewModel.firebaseAuthWithGoogle(account)
-                } catch (e: ApiException) {
-                    Log.e(TAG, e.message.orEmpty())
-                }
-            }
-        }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -63,6 +49,20 @@ class GoogleRegisterActivity : AppCompatActivity() {
         signIn()
 
     }
+
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+
+                try {
+                    val account = task.getResult(ApiException::class.java)!!
+                    viewModel.firebaseAuthWithGoogle(account)
+                } catch (e: ApiException) {
+                    Log.e(TAG, e.message.orEmpty())
+                }
+            }
+        }
 
     private fun setResultGoogle(userLogged: User) {
         val intent = Intent()

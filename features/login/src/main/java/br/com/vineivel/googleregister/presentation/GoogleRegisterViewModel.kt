@@ -3,6 +3,7 @@ package br.com.vineivel.googleregister.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.vineivel.domain.LoadingState
 import br.com.vineivel.domain.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -11,6 +12,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class GoogleRegisterViewModel : ViewModel() {
+
+    private val _loadingState = MutableLiveData<LoadingState>(LoadingState.Loading)
+    val loadingState: LiveData<LoadingState>
+        get() = _loadingState
 
     val gso by lazy {
         GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -58,6 +63,7 @@ class GoogleRegisterViewModel : ViewModel() {
                 } else {
                     _signState.postValue(false)
                 }
+                _loadingState.postValue(LoadingState.Loaded)
             }
     }
 

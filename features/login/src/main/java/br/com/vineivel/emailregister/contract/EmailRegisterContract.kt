@@ -1,16 +1,16 @@
-package br.com.vineivel.facebookregister.contract
+package br.com.vineivel.emailregister.contract
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
 import br.com.vineivel.domain.model.User
-import br.com.vineivel.facebookregister.presentation.FacebookRegisterActivity
+import br.com.vineivel.emailregister.presentation.RegisterLoginEmailActivity
 
-class FacebookRegisterContract : ActivityResultContract<Int, User?>() {
+class EmailRegisterContract : ActivityResultContract<Int, User?>() {
 
     override fun createIntent(context: Context, input: Int?): Intent {
-        val intent = Intent(context, FacebookRegisterActivity::class.java)
+        val intent = Intent(context, RegisterLoginEmailActivity::class.java)
         intent.putExtra("data", 0)
         return intent
     }
@@ -19,5 +19,6 @@ class FacebookRegisterContract : ActivityResultContract<Int, User?>() {
         resultCode != Activity.RESULT_OK -> null
         else -> intent?.getParcelableExtra<User>("data")
     }
+
 
 }

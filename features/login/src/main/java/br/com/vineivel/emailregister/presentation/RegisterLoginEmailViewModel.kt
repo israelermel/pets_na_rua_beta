@@ -58,6 +58,10 @@ class RegisterLoginEmailViewModel(
         if (it.trim().isNotEmpty()) ErrorMessageState.HIDE else ErrorMessageState.SHOW
     }
 
+    private val _userLogged = MutableLiveData<User>()
+    val userLogged: LiveData<User>
+        get() = _userLogged
+
     init {
         loadingStateToLoaded()
     }
@@ -71,6 +75,7 @@ class RegisterLoginEmailViewModel(
                 is RequestResult.Success -> {
                     authenticatedResultState()
                     loadingStateToLoaded()
+                    updateUserLogged(authResult)
                 }
 
                 is RequestResult.Failure -> {
@@ -79,6 +84,10 @@ class RegisterLoginEmailViewModel(
                 }
             }
         }
+    }
+
+    private fun updateUserLogged(authResult: RequestResult.Success<User>) {
+        _userLogged.postValue(authResult.result)
     }
 
     fun onRegisterLoginClick() {

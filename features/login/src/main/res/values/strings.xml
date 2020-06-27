@@ -8,8 +8,6 @@
     <string name="auth_user_already_registered">O endereço de e-mail informado já está cadastrado</string>
 
     <!-- facebook keys -->
-    <string name="facebook_app_id">957414038051959</string>
-    <string name="fb_login_protocol_scheme">fb957414038051959</string>
     <string name="content_description_end_icon">email do usuario</string>
 
     <!--    Forms Messages-->
