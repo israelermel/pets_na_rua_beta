@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.vineivel.domain.model.User
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -17,6 +18,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class FacebookRegisterActivity : AppCompatActivity() {
+
+    val userLoggedFirebase by lazy {
+        auth.currentUser
+    }
 
     val auth by lazy {
         Firebase.auth
@@ -89,9 +94,26 @@ class FacebookRegisterActivity : AppCompatActivity() {
 
     private fun setResultFacebook() {
         val intent = Intent()
-        intent.putExtra("data", auth.currentUser)
+        intent.putExtra("data", getUser())
         setResult(Activity.RESULT_OK, intent)
         finish()
+    }
+
+    private fun getUser(): User {
+        auth.currentUser?.let { firebaseUser ->
+            val userInfo = firebaseUser.providerData[0]
+            val providerId = firebaseUser.providerData[1].providerId
+            with(userInfo) {
+                return User(
+                    uid,
+                    displayName.orEmpty(),
+                    email.orEmpty(),
+                    photoUrl.toString(),
+                    providerId
+                )
+            }
+        }
+        return User()
     }
 
     private fun setCancelResultFacebook() {

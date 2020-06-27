@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.activity.result.contract.ActivityResultContract
+import br.com.vineivel.domain.model.User
 import br.com.vineivel.facebookregister.presentation.FacebookRegisterActivity
-import com.google.firebase.auth.FirebaseUser
 
-class FacebookRegisterContract : ActivityResultContract<Int, FirebaseUser?>() {
+class FacebookRegisterContract : ActivityResultContract<Int, User?>() {
 
     override fun createIntent(context: Context, input: Int?): Intent {
         val intent = Intent(context, FacebookRegisterActivity::class.java)
@@ -15,9 +15,9 @@ class FacebookRegisterContract : ActivityResultContract<Int, FirebaseUser?>() {
         return intent
     }
 
-    override fun parseResult(resultCode: Int, intent: Intent?): FirebaseUser? = when {
+    override fun parseResult(resultCode: Int, intent: Intent?): User? = when {
         resultCode != Activity.RESULT_OK -> null
-        else -> intent?.getParcelableExtra<FirebaseUser>("data")
+        else -> intent?.getParcelableExtra<User>("data")
     }
 
 }
