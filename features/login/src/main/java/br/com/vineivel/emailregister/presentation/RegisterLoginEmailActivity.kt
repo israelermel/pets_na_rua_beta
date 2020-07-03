@@ -1,33 +1,51 @@
 package br.com.vineivel.emailregister.presentation
 
+import android.app.Activity
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import br.com.vineivel.domain.errors.AuthException
-import br.com.vineivel.emailregister.R
-import br.com.vineivel.emailregister.databinding.LoginBinding
+import br.com.vineivel.domain.model.User
+import br.com.vineivel.emailregister.databinding.RegisterEmailBinding
 import br.com.vineivel.emailregister.state.RegisterUserState
 import br.com.vineivel.emailregister.state.toStateResource
 import org.koin.android.viewmodel.ext.android.getViewModel
 
 class RegisterLoginEmailActivity : AppCompatActivity() {
 
-    private lateinit var binding: LoginBinding
-    private lateinit var viewModel: RegisterLoginEmailViewModel
+    private val binding by lazy {
+        RegisterEmailBinding.inflate(layoutInflater)
+    }
+
+    private val viewModel by lazy<RegisterLoginEmailViewModel> {
+        getViewModel()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.lifecycleOwner = this
-        viewModel = getViewModel()
         binding.viewModel = viewModel
+        binding.executePendingBindings()
 
         configFields()
         attachObservers()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val itemId = item.itemId
+        if (itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun configFields() {}
@@ -37,18 +55,14 @@ class RegisterLoginEmailActivity : AppCompatActivity() {
 
             resultState.observe(this@RegisterLoginEmailActivity, Observer { response ->
                 when (response) {
-                    is RegisterUserState.Authenticated -> {
-                        Toast.makeText(
-                            this@RegisterLoginEmailActivity, "Salvo com sucesso",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-
                     is RegisterUserState.Error -> {
                         showErrorMessage(response)
                     }
-
                 }
+            })
+
+            userLogged.observe(this@RegisterLoginEmailActivity, Observer { response ->
+                setResultGoogle(response)
             })
         }
     }
@@ -78,20 +92,28 @@ class RegisterLoginEmailActivity : AppCompatActivity() {
                 updateErrorMessagePassword(errorMessage)
             }
             is AuthException.AlreadyRegisteredUserException -> {
-                showErrorState(R.string.auth_error_user_already_exists)
+                showErrorState(errorMessage)
             }
         }
     }
 
-    private fun showErrorState(msg: Int) {
+    private fun setResultGoogle(userLogged: User) {
+        val intent = Intent()
+        intent.putExtra("data", userLogged)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+    private fun showErrorState(msg: String) {
         AlertDialog.Builder(this)
             .setTitle("Error")
             .setMessage(msg)
             .setCancelable(true)
-            .setPositiveButton("Ok") { dialog, which ->
+            .setPositiveButton("Ok") { dialog, _ ->
                 dialog.cancel()
             }
             .show()
     }
+
 
 }

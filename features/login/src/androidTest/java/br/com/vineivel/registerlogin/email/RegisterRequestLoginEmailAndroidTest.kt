@@ -14,7 +14,7 @@ import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class RegisterLoginEmailAndroidTest {
+class RegisterRequestLoginEmailAndroidTest {
 
     //    private var device: UiDevice =
 //        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())

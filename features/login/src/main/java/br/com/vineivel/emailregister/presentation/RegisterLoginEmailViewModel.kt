@@ -17,7 +17,6 @@ class RegisterLoginEmailViewModel(
 ) : ViewModel() {
 
     private val _resultState = MutableLiveData<RegisterUserState>()
-
     val resultState: LiveData<RegisterUserState>
         get() = _resultState
 
@@ -58,8 +57,12 @@ class RegisterLoginEmailViewModel(
         if (it.trim().isNotEmpty()) ErrorMessageState.HIDE else ErrorMessageState.SHOW
     }
 
+    private val _userLogged = MutableLiveData<User>()
+    val userLogged: LiveData<User>
+        get() = _userLogged
+
     init {
-        loadingStateToUnload()
+        loadingStateToLoaded()
     }
 
     // User Events
@@ -70,15 +73,20 @@ class RegisterLoginEmailViewModel(
             when (val authResult = emailUseCase.execute(registerLogin)) {
                 is RequestResult.Success -> {
                     authenticatedResultState()
-                    loadingStateToUnload()
+                    loadingStateToLoaded()
+                    updateUserLogged(authResult)
                 }
 
                 is RequestResult.Failure -> {
-                    loadingStateToUnload()
+                    loadingStateToLoaded()
                     errorResultState(authResult.throwable as AuthException)
                 }
             }
         }
+    }
+
+    private fun updateUserLogged(authResult: RequestResult.Success<User>) {
+        _userLogged.postValue(authResult.result)
     }
 
     fun onRegisterLoginClick() {
@@ -140,8 +148,8 @@ class RegisterLoginEmailViewModel(
         _loadingState.postValue(LoadingState.Loading)
     }
 
-    private fun loadingStateToUnload() {
-        _loadingState.postValue(LoadingState.UnLoad)
+    private fun loadingStateToLoaded() {
+        _loadingState.postValue(LoadingState.Loaded)
     }
 
 }

@@ -10,13 +10,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class AuthRepository(val firebaseAuth: FirebaseAuth) : AuthService {
+class AuthEmailRepository(val firebaseAuth: FirebaseAuth) : AuthService {
 
     override suspend fun fetchLoggedUser() = firebaseAuth.currentUser?.let {
         User(
             it.uid,
             it.displayName.orEmpty(),
-            it.email
+            it.email.orEmpty(),
+            "",
+            "email"
         )
     }
 
@@ -59,8 +61,8 @@ class AuthRepository(val firebaseAuth: FirebaseAuth) : AuthService {
         } catch (e: Exception) {
             when (e) {
                 is IllegalArgumentException -> throw AuthException.EmptyFullnameException
-                is FirebaseAuthInvalidCredentialsException -> throw AuthException.InvalidEmailFormatException
-                is FirebaseAuthInvalidUserException -> throw AuthException.UserNotFoundException
+                is FirebaseAuthInvalidCredentialsException -> throw AuthException.InvalidCredentialsException
+                is FirebaseAuthInvalidUserException -> throw AuthException.EmailNotFound
                 else -> throw AuthException.UnknownAuthException
             }
         }

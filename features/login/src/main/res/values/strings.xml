@@ -8,8 +8,6 @@
     <string name="auth_user_already_registered">O endereço de e-mail informado já está cadastrado</string>
 
     <!-- facebook keys -->
-    <string name="facebook_app_id">957414038051959</string>
-    <string name="fb_login_protocol_scheme">fb957414038051959</string>
     <string name="content_description_end_icon">email do usuario</string>
 
     <!--    Forms Messages-->
@@ -17,6 +15,7 @@
     <string name="form_email_empty">Você deve informar seu e-mail</string>
     <string name="form_password_empty">Você deve informar sua senha</string>
     <string name="auth_password_dont_match">As senhas informadas são diferentes</string>
+    <string name="auth_credential_invalid">Senha é inválida</string>
     <string name="auth_error_user_already_exists">Usuário já cadastrado com esse e-mail</string>
 </resources>
 

@@ -34,6 +34,12 @@ data class RegisterUserErrorStateResources(val message: Int) {
                 is AuthException.PasswordsDoNotMatchException -> RegisterUserErrorStateResources(
                     R.string.auth_password_dont_match
                 )
+                is AuthException.InvalidCredentialsException -> RegisterUserErrorStateResources(
+                    R.string.auth_wrong_credentials
+                )
+                is AuthException.EmailNotFound -> RegisterUserErrorStateResources(
+                    R.string.auth_wrong_credentials
+                )
                 else -> RegisterUserErrorStateResources(
                     R.string.auth_unknown_error
                 )

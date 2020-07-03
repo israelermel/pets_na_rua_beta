@@ -4,6 +4,7 @@ import android.app.Application
 import br.com.vineivel.data.di.dataModule
 import br.com.vineivel.emailregister.di.loginModule
 import br.com.vineivel.googleregister.di.googleRegisterModule
+import br.com.vineivel.mainlogin.di.mainLoginModule
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
 import com.microsoft.appcenter.crashes.Crashes
@@ -42,6 +43,7 @@ class App : Application() {
                     // Libraries
 
                     // Features
+                    mainLoginModule,
                     loginModule,
                     googleRegisterModule
                 )

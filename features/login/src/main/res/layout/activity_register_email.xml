@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="LoginBinding">
+    <data class="RegisterEmailBinding">
 
         <variable
             name="viewModel"
@@ -60,6 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:text="@={viewModel.fullNameText}"
                     tools:hint="Nome Completo" />
 

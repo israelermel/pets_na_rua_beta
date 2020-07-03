@@ -1,72 +1,116 @@
 package br.com.vineivel.mainlogin.presentation
 
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import br.com.vineivel.emailregister.R
-import br.com.vineivel.emailregister.presentation.RegisterLoginEmailActivity
-import br.com.vineivel.facebookregister.contract.FacebookRegisterContract
+import androidx.lifecycle.Observer
+import br.com.vineivel.domain.errors.AuthException
+import br.com.vineivel.emailregister.contract.EmailRegisterContract
+import br.com.vineivel.emailregister.databinding.MainLoginBinding
+import br.com.vineivel.emailregister.state.RegisterUserState
+import br.com.vineivel.emailregister.state.toStateResource
 import br.com.vineivel.googleregister.contract.GoogleRegisterContract
-import com.facebook.AccessToken
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main_login.*
+import org.koin.android.viewmodel.ext.android.getViewModel
 
 
 class MainLoginActivity : AppCompatActivity() {
+
+    private val binding by lazy {
+        MainLoginBinding.inflate(layoutInflater)
+    }
+
+    private val viewModel by lazy<MainLoginViewModel> {
+        getViewModel()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_login)
+        setContentView(binding.root)
 
-        btn_facebook_register_main_login.setOnClickListener {
-            facebookRegisterContract.launch(0)
-        }
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.executePendingBindings()
 
-        btn_google_register_main_login.setOnClickListener {
-            googleRegisterContract.launch(0)
-        }
+        with(viewModel) {
+            registerEmailClick.observe(this@MainLoginActivity, Observer {
+                if (it) {
+                    emailRegisterContract.launch(0)
+                }
+            })
 
-        btn_register_email.setOnClickListener {
-            startActivity(Intent(this, RegisterLoginEmailActivity::class.java))
+            registerGooleClick.observe(this@MainLoginActivity, Observer {
+                if (it) {
+                    googleRegisterContract.launch(0)
+                }
+            })
+
+            resultState.observe(this@MainLoginActivity, Observer { response ->
+                when (response) {
+                    is RegisterUserState.Error -> {
+                        showErrorMessage(response)
+                    }
+
+                    is RegisterUserState.Authenticated -> {
+                        Toast.makeText(this@MainLoginActivity, "sucesso", Toast.LENGTH_LONG).show()
+                    }
+                }
+            })
+
         }
     }
 
-    private fun logout() {
+    private fun showErrorMessage(response: RegisterUserState.Error) {
+        val errorMessage = getString(response.toStateResource().message)
 
-
-        val accessToken = AccessToken.getCurrentAccessToken()
-        val isLoggedIn = accessToken != null && !accessToken.isExpired
-
-        Firebase.auth.currentUser?.let {
-            Firebase.auth.signOut()
-        }
-    }
-
-
-    private val facebookRegisterContract =
-        registerForActivityResult(FacebookRegisterContract()) { result ->
-            if (result == null) {
-                Toast.makeText(this, "teste error", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "${result.providerData[0].displayName}", Toast.LENGTH_LONG)
-                    .show()
+        when (response.error) {
+            is AuthException.EmailNotFound -> {
+                showErrorState(errorMessage)
             }
+            is AuthException.InvalidCredentialsException -> {
+                showErrorState(errorMessage)
+            }
+            is AuthException.EmptyEmailException -> {
+                viewModel.updateEmailErrorMessage(errorMessage)
+            }
+            is AuthException.InvalidEmailFormatException -> {
+                viewModel.updateEmailErrorMessage(errorMessage)
+            }
+            is AuthException.EmptyPasswordException -> {
+                viewModel.updatePasswordErrorMessage(errorMessage)
+            }
+            else -> {
+                showErrorState(errorMessage)
+            }
+
         }
+    }
+
+    private fun showErrorState(msg: String) {
+        AlertDialog.Builder(this)
+            .setTitle("Error")
+            .setMessage(msg)
+            .setCancelable(true)
+            .setPositiveButton("Ok") { dialog, _ ->
+                dialog.cancel()
+            }
+            .show()
+    }
+
 
     private val googleRegisterContract =
         registerForActivityResult(GoogleRegisterContract()) { result ->
-            if (result == null) {
-                Toast.makeText(this, "teste error", Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "${result.providerData[0].displayName}", Toast.LENGTH_LONG)
+            if (result != null) {
+                Toast.makeText(this, "${result.profilePicture}", Toast.LENGTH_LONG)
                     .show()
             }
         }
 
-
-    override fun onResume() {
-        super.onResume()
-        logout()
-    }
+    private val emailRegisterContract =
+        registerForActivityResult(EmailRegisterContract()) { result ->
+            if (result != null) {
+                Toast.makeText(this, "${result.profilePicture}", Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
 }

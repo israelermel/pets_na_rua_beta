@@ -2,6 +2,7 @@ package br.com.vineivel.domain.errors
 
 sealed class AuthException : RuntimeException() {
     object UserNotFoundException : AuthException()
+    object EmailNotFound : AuthException()
     object EmptyFullnameException : AuthException()
     object EmptyEmailException : AuthException()
     object EmptyPasswordException : AuthException()
@@ -12,4 +13,5 @@ sealed class AuthException : RuntimeException() {
     object UnknownAuthException : AuthException()
     object AlreadyRegisteredUserException : AuthException()
     object InvalidEmailFormatException : AuthException()
+    object InvalidCredentialsException : AuthException()
 }
