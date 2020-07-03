@@ -17,7 +17,6 @@ class RegisterLoginEmailViewModel(
 ) : ViewModel() {
 
     private val _resultState = MutableLiveData<RegisterUserState>()
-
     val resultState: LiveData<RegisterUserState>
         get() = _resultState
 

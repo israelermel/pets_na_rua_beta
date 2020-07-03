@@ -61,8 +61,8 @@ class AuthEmailRepository(val firebaseAuth: FirebaseAuth) : AuthService {
         } catch (e: Exception) {
             when (e) {
                 is IllegalArgumentException -> throw AuthException.EmptyFullnameException
-                is FirebaseAuthInvalidCredentialsException -> throw AuthException.InvalidEmailFormatException
-                is FirebaseAuthInvalidUserException -> throw AuthException.UserNotFoundException
+                is FirebaseAuthInvalidCredentialsException -> throw AuthException.InvalidCredentialsException
+                is FirebaseAuthInvalidUserException -> throw AuthException.EmailNotFound
                 else -> throw AuthException.UnknownAuthException
             }
         }

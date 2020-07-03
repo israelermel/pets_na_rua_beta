@@ -15,6 +15,7 @@
     <string name="form_email_empty">Você deve informar seu e-mail</string>
     <string name="form_password_empty">Você deve informar sua senha</string>
     <string name="auth_password_dont_match">As senhas informadas são diferentes</string>
+    <string name="auth_credential_invalid">Senha é inválida</string>
     <string name="auth_error_user_already_exists">Usuário já cadastrado com esse e-mail</string>
 </resources>
 

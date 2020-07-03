@@ -9,8 +9,12 @@ data class AuthRequest(
     var password: String
 ) {
     fun validateOrThrow() {
+        if (email.isEmpty()) throw AuthException.EmptyEmailException
+
         if (!EmailValidator(email))
             throw AuthException.InvalidEmailFormatException
+
+        if (password.isEmpty()) throw AuthException.EmptyPasswordException
     }
 }
 
